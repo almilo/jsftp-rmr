@@ -1,6 +1,6 @@
 {
   "name": "jsftp-rmr",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Recursively delete non-empty nested directories with jsftp, like 'rm -r'",
   "main": "index.js",
   "repository": {
