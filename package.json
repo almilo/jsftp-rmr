@@ -1,0 +1,25 @@
+{
+  "name": "jsftp-rmr",
+  "version": "0.0.0",
+  "description": "Recursively delete non-empty nested directories with jsftp, like 'rm -r'",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/almilo/jsftp-rmr.git"
+  },
+  "keywords": [
+    "jsftp",
+    "rmd",
+    "rm",
+    "recursive"
+  ],
+  "author": {
+    "name": "Alberto Mijares",
+    "email": "almilo@almilo.es"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/almilo/jsftp-rmr/issues"
+  },
+  "homepage": "https://github.com/almilo/jsftp-rmr"
+}
