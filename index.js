@@ -19,6 +19,7 @@ function rmr(remoteDirectory, callback) {
                 if (error) {
                     callback(error);
                 } else {
+                    directoriesAndFiles.directories.push(remoteDirectory)
                     deleteAllDirectories(directoriesAndFiles.directories, callback);
                 }
             });
@@ -30,7 +31,10 @@ function rmr(remoteDirectory, callback) {
             pendingDirectories = [pendingDirectories];
         }
         if (allDirectoriesAndFiles === undefined) {
-            allDirectoriesAndFiles = {directories: [], files: []};
+            allDirectoriesAndFiles = {
+                directories: [],
+                files: []
+            };
         }
 
         if (pendingDirectories.length === 0) {
@@ -63,17 +67,19 @@ function rmr(remoteDirectory, callback) {
 
     function listDirectoriesAndFiles(remoteDirectory, callback) {
         jsFtp.ls(remoteDirectory, function (error, directoryEntries) {
-                if (error) {
-                    callback(error);
-                } else {
-                    callback(null, toDirectoriesAndFiles(directoryEntries));
-                }
+            if (error) {
+                callback(error);
+            } else {
+                callback(null, toDirectoriesAndFiles(directoryEntries));
             }
-        );
+        });
 
         function toDirectoriesAndFiles(directoryEntries) {
             return directoryEntries
-                .reduce(toDirectoriesAndFiles, {directories: [], files: []});
+                .reduce(toDirectoriesAndFiles, {
+                    directories: [],
+                    files: []
+                });
 
             function toDirectoriesAndFiles(directoriesAndFiles, directoryEntry) {
                 if (directoryEntry.type === 1 && directoryEntry.name !== '.' && directoryEntry.name !== '..') {
@@ -105,7 +111,7 @@ function rmr(remoteDirectory, callback) {
 
             entries.splice(0, 1);
 
-            jsFtp.raw(command + ' ' + currentEntry, function (error) {
+            jsFtp.raw(command, currentEntry, function (error) {
                 if (error) {
                     callback(error);
                 } else {
