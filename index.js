@@ -105,7 +105,7 @@ function rmr(remoteDirectory, callback) {
 
             entries.splice(0, 1);
 
-            jsFtp.raw[command](currentEntry, function (error) {
+            jsFtp.raw(command + ' ' + currentEntry, function (error) {
                 if (error) {
                     callback(error);
                 } else {
